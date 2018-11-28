@@ -30,3 +30,15 @@
     transform: rotate(360deg);
   }
 }
+
+.plain-label {
+  color: orange;
+}
+
+.green-label {
+  color: green;
+}
+
+.red-label {
+  color: red;
+}

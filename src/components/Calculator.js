@@ -25,12 +25,27 @@ class Calculator extends Component {
       temperature: event.target.value
     }, () => console.log('state is: ', this.state));
   }
+  
+  getColor = (theCelsius) => {
+    let color;
+    if (theCelsius < 100) {
+      color = "green";
+    } else if (theCelsius >= 100 && theCelsius < 200) {
+      color = "orange";
+    } else if (theCelsius >= 200) {
+      color = "red";
+    } else {
+      color = "black";
+    }
+    return color;
+  }
 
   render() {
     const { scale, temperature } = this.state;
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
-    
+    const colorFromMethod = this.getColor(parseFloat(celsius));
+
     return (
       <div id="calculator">
         <TemperatureInput
@@ -44,6 +59,7 @@ class Calculator extends Component {
           onTemperatureChange={temperature => this.handleFahrenheitChange(temperature)} />
 
         <BoilingVerdict
+          color={colorFromMethod}
           celsius={parseFloat(celsius)} />
       </div>
     );
